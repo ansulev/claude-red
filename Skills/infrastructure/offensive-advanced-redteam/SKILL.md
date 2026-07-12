@@ -1,29 +1,21 @@
-# SKILL: Advanced Redteam Ops
-
-## Metadata
-- **Skill Name**: advanced-redteam-ops
-- **Folder**: offensive-advanced-redteam
-- **Source**: https://github.com/SnailSploit/offensive-checklist/blob/main/Advanced%20red-team%20operations%20for%20dummies.md
-
-## Description
-Practical advanced red team operations guide: OPSEC discipline, C2 infrastructure design, living-off-the-land techniques, lateral movement, persistence, data exfiltration, and evading modern defenses. Use for planning advanced red team engagements or understanding APT TTPs.
-
-## Trigger Phrases
-Use this skill when the conversation involves any of:
-`advanced red team, red team operations, OPSEC, C2 infrastructure, living off the land, LOTL, lateral movement, persistence, exfiltration, APT, advanced threat, red team for dummies`
-
-## Instructions for Claude
-
-When this skill is active:
-1. Load and apply the full methodology below as your operational checklist
-2. Follow steps in order unless the user specifies otherwise
-3. For each technique, consider applicability to the current target/context
-4. Track which checklist items have been completed
-5. Suggest next steps based on findings
-
 ---
-
-## Full Methodology
+name: offensive-advanced-redteam
+description: "Practical advanced red team operations guide: OPSEC discipline, C2 infrastructure design, living-off-the-land techniques, lateral movement, persistence, data exfiltration, and evading modern defenses. Use for planning advanced red team engagements or understanding APT TTPs."
+trigger_phrases:
+  - "advanced red team"
+  - "red team operations"
+  - "OPSEC"
+  - "C2 infrastructure"
+  - "living off the land"
+  - "LOTL"
+  - "lateral movement"
+  - "persistence"
+  - "exfiltration"
+  - "APT"
+  - "advanced threat"
+  - "red team for dummies"
+source: https://github.com/SnailSploit/offensive-checklist/blob/main/Advanced%20red-team%20operations%20for%20dummies.md
+---
 
 ## Redirectors
 Your CStrike, BRC4, etc., team server should ONLY bind locally. NEVER bind to 0.0.0.0 or an external-facing interface; always bind locally and have a redirector/tunnel expose it to the outside world.

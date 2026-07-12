@@ -1,44 +1,54 @@
-# Git Workflow — ansulev/Claude-Red
+# Git Workflow — claude-red (private base)
+
+This fork is a **decoupled private base**, not an upstream dependency. Upstream is a
+read-only *content* feed: pull new skill methodology, then re-normalize it through our
+tooling. The base format (unified YAML frontmatter + neutral body) and the emitter are
+ours and stay stable. See `TARGETS.md` and the project memory.
 
 ## Remotes
 
-| Remote   | URL                                        | Purpose              |
-|----------|--------------------------------------------|----------------------|
-| origin   | github.com/ansulev/Claude-Red              | This fork — push here |
-| upstream | github.com/SnailSploit/Claude-Red          | Source — pull only   |
+| Remote   | URL                                 | Purpose               |
+|----------|-------------------------------------|-----------------------|
+| origin   | github.com/ansulev/claude-red       | This fork — push here |
+| upstream | github.com/SnailSploit/claude-red   | Source — pull only    |
 
-## Sync upstream → this fork
+## Sync upstream → this fork (pull, merge, re-normalize)
 
 ```bash
 git fetch upstream
-git merge upstream/main
-python convert_skills.py       # regenerate skills-converted/ and skills-zip/
+git merge upstream/main                     # conflicts EXPECTED in Skills/ we normalized
+
+# Resolve conflicts by taking upstream CONTENT, then re-normalize (all idempotent):
+python3 tools/migrate_legacy_skills.py      # any legacy ## Metadata skill → unified YAML base
+python3 tools/build_manifest.py             # regenerate claude-skills.json (single indexer)
+python3 tools/emit.py --target all          # regenerate dist/ per-agent trees (gitignored)
+
 git push origin main
 ```
 
-Conflicts only happen if upstream modifies `convert_skills.py`.
-This fork's changes live in those 4 commits on top — they never touch `Skills/`.
+`migrate_legacy_skills.py` skips files already in YAML frontmatter, so re-running it only
+touches upstream skills still in the old format. `dist/`, `skills-converted/`, `skills-zip/`
+are generated and gitignored — never merge-relevant.
 
-## This fork's changes vs upstream
+## Conflict expectation
 
-| File               | What changed                                      |
-|--------------------|---------------------------------------------------|
-| convert_skills.py  | Path("skills") → Path("Skills") (Linux case fix)  |
-| convert_skills.py  | All Spanish strings/comments → English            |
-| convert_skills.py  | Bare f-strings and unused yaml import fixed        |
+Upstream still ships two formats and edits `Skills/` freely, so **merges will conflict on
+any skill we normalized**. Resolution rule: keep upstream's *methodology content*, discard
+its format scaffolding (`## Metadata` / `## Instructions for Claude` / `## Full
+Methodology`), then let `migrate_legacy_skills.py` re-impose the base format. Never hand-fix
+frontmatter — regenerate.
 
-Not submitted upstream — unclear if Spanish was intentional on their end.
+## This fork's divergence vs upstream
 
-## Day-to-day
+| Area | Change |
+|------|--------|
+| Skill format | Unified all 58 skills to one YAML-frontmatter base (was 26 YAML / 32 legacy) |
+| `tools/migrate_legacy_skills.py` | New — legacy → base normalizer (idempotent) |
+| `tools/emit.py` + `TARGETS.md` | New — multi-agent emitter (claude/codex/opencode/generic; more planned) |
+| `tools/build_manifest.py` | Single manifest indexer; `claude-skills.json` now complete |
+| `convert_skills.py` | Deprecated (legacy Claude-Console ZIP path); pending removal |
+| Deletions | `.github/workflows/python-publish.yml` (dead PyPI job), tracked `.DS_Store` |
+| `.gitignore` | New — excludes generated `dist/`, `skills-converted/`, `skills-zip/`, caches |
 
-```bash
-# Push this fork's changes
-git push origin main
-
-# Check what upstream has that you don't
-git fetch upstream
-git log HEAD..upstream/main --oneline
-
-# After merging, always regenerate
-python convert_skills.py
-```
+None submitted upstream — upstream management is stalled/inconsistent; this base is
+maintained independently.

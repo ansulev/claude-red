@@ -89,11 +89,7 @@ The `description` is what Claude matches against. Make it dense with relevant te
 3. Write the frontmatter and body following the structure above.
 4. Update [`README.md`](README.md) — add the skill to the relevant category table.
 5. Update [`CHANGELOG.md`](CHANGELOG.md) under the next version.
-6. Update [`claude-skills.json`](claude-skills.json) if it exists (run `python tools/build_manifest.py` if available).
-7. Run any local lint:
-   ```bash
-   ./tools/check-skill.sh Skills/<category>/<skill-name>/SKILL.md
-   ```
+6. Regenerate the manifest: `python3 tools/build_manifest.py`.
 
 ## Modifying an Existing Skill
 
