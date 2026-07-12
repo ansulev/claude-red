@@ -1,5 +1,11 @@
 # BACKLOG — claude-red
 
+## Next up (2026-07-12, priority order)
+1. **Prove one non-Claude emitter end-to-end** — wire `dist/opencode/` or `agy` (conventions exist in `~/.agents`) into a real project via harness symlink; run a skill. Makes multi-agent real.
+2. **Deepen the moat (first-activity content)** — RF/wireless + exploit-dev is where claude-sec (817) is empty. Execute roadmap splits (IoT/hardware, AD, web-advanced). Durable differentiator.
+3. **Package as a Claude plugin** — copy claude-sec's `.claude-plugin/plugin.json` + `marketplace.json` so it's installable, not just clonable.
+4. **Retire `convert_skills.py`** once an emitter covers Console ZIP export.
+
 ## Emitter targets
 
 The base (`Skills/`) + `tools/emit.py` render per-agent trees into `dist/<target>/`.
