@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """
-Claude Skills Converter v4
-Markdown parser for ## headers and - **Field**: value format.
-name = folder value (not skill_name field)
+Claude Skills Converter v4 — LEGACY / PENDING REPLACEMENT.
+
+Parses the old '## Metadata' markdown layout into Claude-Console ZIP uploads.
+As of the source-format unification, every skill in Skills/ is YAML frontmatter,
+which this script does NOT parse — it will emit empty output against the current
+tree. Kept only until the multi-target emitter (claude/codex/grok/antigravity/
+generic) replaces it. Do not run against the unified Skills/ tree.
 """
 import re
 import zipfile
@@ -199,9 +203,4 @@ def main() -> None:
         print("\n❌ No skills converted. Run with --debug to diagnose.")
 
 if __name__ == '__main__':
-    if not __import__('importlib').util.find_spec('yaml'):
-        print("⚠️  Installing PyYAML dependency...")
-        import subprocess
-        subprocess.check_call(['pip', 'install', 'pyyaml'])
-
     main()

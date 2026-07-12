@@ -1,29 +1,21 @@
-# SKILL: Server-Side Template Injection (SSTI)
-
-## Metadata
-- **Skill Name**: ssti
-- **Folder**: offensive-ssti
-- **Source**: https://github.com/SnailSploit/offensive-checklist/blob/main/ssti.md
-
-## Description
-Server-Side Template Injection testing checklist: template engine identification (Jinja2, Twig, Freemarker, Pebble, Velocity), polyglot detection payloads, engine-specific RCE payloads, blind SSTI, and filter bypass. Use when testing web apps for template injection vulnerabilities.
-
-## Trigger Phrases
-Use this skill when the conversation involves any of:
-`SSTI, server-side template injection, Jinja2, Twig, Freemarker, Pebble, Velocity, template injection, template RCE, polyglot payload, template engine, blind SSTI`
-
-## Instructions for Claude
-
-When this skill is active:
-1. Load and apply the full methodology below as your operational checklist
-2. Follow steps in order unless the user specifies otherwise
-3. For each technique, consider applicability to the current target/context
-4. Track which checklist items have been completed
-5. Suggest next steps based on findings
-
 ---
-
-## Full Methodology
+name: offensive-ssti
+description: "Server-Side Template Injection testing checklist: template engine identification (Jinja2, Twig, Freemarker, Pebble, Velocity), polyglot detection payloads, engine-specific RCE payloads, blind SSTI, and filter bypass. Use when testing web apps for template injection vulnerabilities."
+trigger_phrases:
+  - "SSTI"
+  - "server-side template injection"
+  - "Jinja2"
+  - "Twig"
+  - "Freemarker"
+  - "Pebble"
+  - "Velocity"
+  - "template injection"
+  - "template RCE"
+  - "polyglot payload"
+  - "template engine"
+  - "blind SSTI"
+source: https://github.com/SnailSploit/offensive-checklist/blob/main/ssti.md
+---
 
 # Server-Side Template Injection (SSTI)
 
@@ -344,4 +336,3 @@ SSTI often leads directly to RCE, but can also be used for:
 - Harden runtime: enable seccomp/AppArmor or gVisor so that even a successful RCE has minimal kernel attack surface.
 - CI guardrails: block usage of dangerous APIs (e.g., `render_template_string`, `Template.compile`, `eval` filters) via linters/semgrep; add approve‑list of safe helpers
 - For Node: disable `with` in EJS, avoid `compileDebug`, and run with `vm` sandbox only when fully locked down (no `require` or `Function` reachable)
-

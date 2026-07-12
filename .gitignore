@@ -1,0 +1,13 @@
+# Generated skill build artifacts — regenerated on demand, never committed
+skills-converted/
+skills-zip/
+build/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.ruff_cache/
+
+# OS
+.DS_Store

@@ -1,29 +1,19 @@
-# SKILL: Insecure Deserialization
-
-## Metadata
-- **Skill Name**: insecure-deserialization
-- **Folder**: offensive-deserialization
-- **Source**: https://github.com/SnailSploit/offensive-checklist/blob/main/insecure-deserialization.md
-
-## Description
-Insecure deserialization attack checklist: identifying deserialization sinks, Java/PHP/.NET/Python deserialization exploitation, ysoserial gadget chains, magic method abuse, and detection evasion. Use when testing deserialization endpoints or developing deserialization exploits.
-
-## Trigger Phrases
-Use this skill when the conversation involves any of:
-`deserialization, insecure deserialization, ysoserial, Java deserialization, PHP deserialization, .NET deserialization, pickle, gadget chain, magic method, ObjectInputStream`
-
-## Instructions for Claude
-
-When this skill is active:
-1. Load and apply the full methodology below as your operational checklist
-2. Follow steps in order unless the user specifies otherwise
-3. For each technique, consider applicability to the current target/context
-4. Track which checklist items have been completed
-5. Suggest next steps based on findings
-
 ---
-
-## Full Methodology
+name: offensive-deserialization
+description: "Insecure deserialization attack checklist: identifying deserialization sinks, Java/PHP/.NET/Python deserialization exploitation, ysoserial gadget chains, magic method abuse, and detection evasion. Use when testing deserialization endpoints or developing deserialization exploits."
+trigger_phrases:
+  - "deserialization"
+  - "insecure deserialization"
+  - "ysoserial"
+  - "Java deserialization"
+  - "PHP deserialization"
+  - ".NET deserialization"
+  - "pickle"
+  - "gadget chain"
+  - "magic method"
+  - "ObjectInputStream"
+source: https://github.com/SnailSploit/offensive-checklist/blob/main/insecure-deserialization.md
+---
 
 # Insecure Deserialization
 
@@ -180,4 +170,3 @@ Happens when applications deserialize program objects without proper precaution.
 3.  Use safe, specific serializers without polymorphic typing; implement allowlists.
 4.  Isolate deserialization code under least privilege and sandboxing; timeouts/memory limits.
 5.  Keep libraries updated; monitor for anomalies.
-
