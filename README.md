@@ -4,7 +4,9 @@
 
 # claude-red
 
-**Offensive security skills for Claude — drop-in `SKILL.md` files that turn Claude into a context-aware red team operator.**
+**Tool-neutral offensive-security skill base — deep RF/wireless, binary exploitation, and advanced web bug classes for any coding agent.**
+
+Works with **Claude · Codex · opencode · Gemini** — one neutral base, per-agent emitters ([TARGETS.md](TARGETS.md)).
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-58-red.svg)](#skill-index)
@@ -46,9 +48,9 @@ Built by **[SnailSploit](https://snailsploit.com)** — GenAI Security Research.
 
 ## What is this
 
-`claude-red` is a curated library of offensive security skills for the [Claude Skills system](https://docs.claude.com). Each skill is a structured `SKILL.md` file that primes Claude with expert-level methodology for a specific attack surface — from SQLi to shellcode, EDR evasion to ADCS abuse.
+`claude-red` is a curated library of offensive security skills authored **once, in a tool-neutral base** (`Skills/`), then emitted per coding agent (`tools/emit.py` → Claude Agent Skills, Codex/opencode `AGENTS.md`, generic markdown — more in [TARGETS.md](TARGETS.md)). Each skill is a structured `SKILL.md`: dense, expert-level methodology for one attack surface — from SQLi to shellcode, EDR evasion to ADCS abuse. Skills load on demand based on conversational triggers.
 
-Drop a skill into your Claude environment and it behaves like a specialist: it knows the techniques, the tooling, the edge cases, and the escalation paths. Skills load on demand based on conversational triggers — you don't pay context for skills you aren't using.
+**How it differs from broad cyber-skill libraries:** depth where they're thin — the full offensive **RF/wireless** stack (WPA2/3, WPS, evil-twin, KRACK/FragAttacks, BLE, Zigbee, Z-Wave, LoRa/sub-GHz), **binary exploit-dev** (shellcode, ROP, heap, TOCTOU), and advanced web bug classes. Focused and portable rather than exhaustive.
 
 **Use it for:** authorized red team engagements, bug bounty triage, security research, CTF preparation, training operators, and exploring attack surfaces methodically.
 
