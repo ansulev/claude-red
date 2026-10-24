@@ -1,5 +1,5 @@
 # AGENTS.md — claude-red
-**v0.1 · 2026-07-12 · ANSULEV Group**
+**v0.1 · 2026-07-12 · Ansulev Lab**
 **Extends: ~/.claude/CLAUDE.md (global) + SYSTEM.md**
 **Context source of truth — `CLAUDE.md` · `CODEX.md` · `GEMINI.md` · `OPENCODE.md` symlink here. Edit only this file.**
 
