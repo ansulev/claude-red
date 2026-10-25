@@ -11,3 +11,7 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# Local harness + audit (ansulev fork)
+.claude/
+AUDIT/
